@@ -120,7 +120,7 @@ describe('MIInterpreter', function() {
         );
     });
 
-    /* FIXME test this another way since it doesn't send an event anymore 
+    /* FIXME test this another way since it doesn't send an event anymore
     it('should return a ResultRecord Event', function() {
         let input = '^done,test="test"\n(gdb) \n';
 
