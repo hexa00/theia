@@ -22,6 +22,7 @@ import { FrontendApplication, CommonMenus } from '@theia/core/lib/browser';
 import { TERMINAL_WIDGET_FACTORY_ID, TerminalWidgetFactoryOptions } from './terminal-widget';
 import { WidgetManager } from '@theia/core/lib/browser/widget-manager';
 import { WorkspaceService } from '@theia/workspace/lib/browser/workspace-service';
+import { TerminalWidget } from './terminal-widget';
 
 export namespace TerminalCommands {
     export const NEW: Command = {
@@ -65,9 +66,10 @@ export class TerminalFrontendContribution implements CommandContribution, MenuCo
     }
 
     protected async newTerminal(): Promise<void> {
-        await this.widgetManager.getOrCreateWidget(TERMINAL_WIDGET_FACTORY_ID, <TerminalWidgetFactoryOptions>{
+        const widget = <TerminalWidget>await this.widgetManager.getOrCreateWidget(TERMINAL_WIDGET_FACTORY_ID, <TerminalWidgetFactoryOptions>{
             created: new Date().toString()
         });
+        widget.start();
     }
 
 }
